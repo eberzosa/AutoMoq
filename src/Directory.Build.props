@@ -1,0 +1,29 @@
+<Project>
+
+  <!-- Settings -->
+  <PropertyGroup>
+    <VersionPrefix>2.0.0</VersionPrefix>
+    <Authors>Enrique Berzosa</Authors>
+    <Copyright>© 2016 Darren Cauthon, $([System.DateTime]::Now.Year) Enrique Berzosa</Copyright>
+    <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+	  <LicenseUrl>https://github.com/eberzosa/AutoMoq/blob/master/license.txt</LicenseUrl>
+	  <ProjectUrl>https://github.com/eberzosa/AutoMoq</ProjectUrl>
+	  <Description>Auto-mocking container</Description>
+	  <Tags>moq unity tdd testing test</Tags>
+  </PropertyGroup>
+   
+  <!-- Project Settings -->
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)..\..\eberzosagh.snk</AssemblyOriginatorKeyFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>CS1591</NoWarn>
+  </PropertyGroup>
+
+  <!-- CI Helpers -->
+  <PropertyGroup>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)..\..\artifacts</PackageOutputPath>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+  
+</Project>
