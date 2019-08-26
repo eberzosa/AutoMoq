@@ -22,7 +22,7 @@
 
   <!-- CI Helpers -->
   <PropertyGroup>
-    <PackageOutputPath>$(MSBuildThisFileDirectory)..\..\artifacts</PackageOutputPath>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)..\..\..\packages</PackageOutputPath>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   
