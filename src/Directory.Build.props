@@ -3,21 +3,25 @@
   <!-- Settings -->
   <PropertyGroup>
     <VersionPrefix>2.0.0</VersionPrefix>
-    <Authors>Enrique Berzosa</Authors>
-    <Copyright>© 2016 Darren Cauthon, $([System.DateTime]::Now.Year) Enrique Berzosa</Copyright>
-    <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
-	  <LicenseUrl>https://github.com/eberzosa/AutoMoq/blob/master/license.txt</LicenseUrl>
-	  <ProjectUrl>https://github.com/eberzosa/AutoMoq</ProjectUrl>
-	  <Description>Auto-mocking container</Description>
-	  <Tags>moq unity tdd testing test</Tags>
   </PropertyGroup>
-   
+
   <!-- Project Settings -->
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)..\..\eberzosagh.snk</AssemblyOriginatorKeyFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>CS1591</NoWarn>
+  </PropertyGroup>
+
+  <!-- Packing -->
+  <PropertyGroup>
+    <Authors>Enrique Berzosa</Authors>
+    <Copyright>© 2016 Darren Cauthon, $([System.DateTime]::Now.Year) Enrique Berzosa</Copyright>
+    <Description>Auto-mocking container. Updated to Unity 5, NetCore project support and signed.</Description>
+    <RepositoryUrl>https://github.com/eberzosa/AutoMoq</RepositoryUrl>
+    <PackageTags>moq unity tdd testing test</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <!-- CI Helpers -->
