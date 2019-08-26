@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Web.Mvc;
 using AutoMoq.Helpers;
 using AutoMoq.TestFixture.Samples.Code;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
-using NUnit.Framework;
+using Xunit;
 
 namespace AutoMoq.TestFixture.Samples.Tests
 {
-    [TestFixture]
     public class AccountControllerTests : AutoMoqTestFixture<AccountController>
     {
-        [SetUp]
-        public void BeforeEachTest()
+        public AccountControllerTests()
         {
             ResetSubject();
         }
 
-        [Test]
+        [Fact]
         public void ShouldListAllAccountsFromRepository()
         {
             Mocked<IAccountRepository>().Setup(
@@ -30,13 +27,13 @@ namespace AutoMoq.TestFixture.Samples.Tests
 
             var model = result.ViewData.Model as IEnumerable<Account>;
 
-            Assert.That(model.Count(), Is.EqualTo(2));
+            Assert.Equal(2, model.Count());
 
             Mocked<IAccountRepository>()
                 .Verify(x => x.SomethingElse(), Times.Once());
         }
 
-        [Test]
+        [Fact]
         public void ShouldShowTheErrorPageWhenRepositoryHasErrors()
         {
             Mocked<IAccountRepository>().Setup(
@@ -44,7 +41,7 @@ namespace AutoMoq.TestFixture.Samples.Tests
 
             ViewResult result = Subject.ListAllAccounts() as ViewResult;
 
-            Assert.That(result.ViewName, Is.EqualTo("Error"));
+            Assert.Equal("Error", result.ViewName);
         }
     }
 }

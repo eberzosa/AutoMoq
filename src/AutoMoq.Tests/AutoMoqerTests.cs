@@ -1,45 +1,42 @@
 ﻿using System;
-using System.CodeDom;
-using System.Configuration;
 using Moq;
 using NUnit.Framework;
-using Should;
+using Shouldly;
+using Xunit;
 
 namespace AutoMoq.Tests
 {
-    [TestFixture]
     public class AutoMoqerTests
     {
         private AutoMoqer mocker;
 
-        [SetUp]
-        public void Setup()
+        public AutoMoqerTests()
         {
             mocker = new AutoMoqer();
         }
 
-        [Test]
+        [Fact]
         public void Can_resolve_a_concrete_class()
         {
             var concreteClass = mocker.Create<ConcreteClass>();
             concreteClass.ShouldNotBeNull();
         }
 
-        [Test]
+        [Fact]
         public void Can_resolve_a_class_with_dependencies()
         {
             var concreteClass = mocker.Create<ClassWithDependencies>();
             concreteClass.ShouldNotBeNull();
         }
 
-        [Test]
+        [Fact]
         public void Can_resolve_a_class_with_func_dependencies()
         {
             var concreteClass = mocker.Create<ClassWithFuncDependencies>();
             concreteClass.ShouldNotBeNull();
         }
 
-        [Test]
+        [Fact]
         public void Can_test_against_a_func_dependency_as_if_it_were_not()
         {
             var concreteClass = mocker.Create<ClassWithFuncDependencies>();
@@ -48,7 +45,7 @@ namespace AutoMoq.Tests
                 .Verify(x => x.Something(), Times.Once());
         }
 
-        [Test]
+        [Fact]
         public void Can_test_with_an_abstract_dependency_registered_by_the_create()
         {
             var concreteClass = mocker.Create<ClassWithAbstractDependenciesAndManyConstructors>();
@@ -57,7 +54,7 @@ namespace AutoMoq.Tests
                 .Verify(x => x.Something(), Times.Once());
         }
 
-        [Test]
+        [Fact]
         public void Can_test_with_an_abstract_dependency_registered_before_the_create()
         {
             mocker.GetMock<AbstractDependency>(); // here is the register
@@ -67,27 +64,27 @@ namespace AutoMoq.Tests
                 .Verify(x => x.Something(), Times.Once());
         }
 
-        [Test]
+        [Fact]
         public void Can_test_with_a_class_that_has_many_constructors_and_abstract_dependencies()
         {
             
         }
 
-		[Test]
+		[Fact]
 		public void Can_resolve_a_class_with_nongeneric_create()
 		{
 			var concreteClass = mocker.Create(typeof(ClassWithAbstractDependenciesAndManyConstructors)) as ClassWithAbstractDependenciesAndManyConstructors;
 
-			Assert.IsNotNull(concreteClass);
+			Assert.NotNull(concreteClass);
 		}
 
-		[Test]
+		[Fact]
 		public void Can_resolve_a_interface()
 		{
 			var errorWasHit = false;
 			try {
 				var mockedInterface = mocker.Create<IDependency>();
-			    mockedInterface.ShouldImplement(typeof(IDependency));
+			    mockedInterface.ShouldBeAssignableTo<IDependency>();
 			} catch {
 				errorWasHit = true;
 			}

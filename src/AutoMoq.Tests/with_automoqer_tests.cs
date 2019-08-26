@@ -1,22 +1,20 @@
 ﻿using AutoMoq.Helpers;
 using Moq;
-using NUnit.Framework;
-using Should;
+using Shouldly;
+using Xunit;
 
 namespace AutoMoq.Tests
 {
-    [TestFixture]
     public class with_automoqer_Tests
     {
         private AutoMoqer mocker;
 
-        [SetUp]
-        public void Setup()
+        public with_automoqer_Tests()
         {
             mocker = new AutoMoqer();
         }
 
-        [Test]
+        [Fact]
         public void Instantiating_the_automoqer_sets_the_static_mocker()
         {
             with_automoqer.mocker = null;
@@ -24,7 +22,7 @@ namespace AutoMoq.Tests
             with_automoqer.mocker.ShouldNotBeNull();
         }
 
-        [Test]
+        [Fact]
         public void A_config_option_can_be_provided_when_setting_up()
         {
             with_automoqer.mocker = null;
@@ -45,7 +43,7 @@ namespace AutoMoq.Tests
             errorHit.ShouldBeTrue();
         }
 
-        [Test]
+        [Fact]
         public void GetMock_returns_the_mock()
         {
             var test = new with_automoqer();
@@ -54,7 +52,7 @@ namespace AutoMoq.Tests
             with_automoqer.GetMock<IDependency>().ShouldBeSameAs(with_automoqer.mocker.GetMock<IDependency>());
         }
 
-        [Test]
+        [Fact]
         public void Create_returns_the_class_resolved_from_automoqer()
         {
             var test = new with_automoqer();
@@ -64,7 +62,7 @@ namespace AutoMoq.Tests
                 .Dependency.ShouldBeSameAs(with_automoqer.GetMock<IDependency>().Object);
         }
 
-        [Test]
+        [Fact]
         public void SetInstance_sets_the_instance()
         {
             with_automoqer.mocker = new AutoMoqer();

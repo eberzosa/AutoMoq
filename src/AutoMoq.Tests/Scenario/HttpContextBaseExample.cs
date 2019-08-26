@@ -1,13 +1,15 @@
-﻿using System.Web;
+﻿
+
+using Xunit;
+#if NETFRAMEWORK
+using System.Web;
 using NUnit.Framework;
 
 namespace AutoMoq.Tests.Scenario
 {
-    [TestFixture]
     public class Situation_where_the_wrong_http_context_base_is_passed_inTests
     {
-
-        [Test]
+        [Fact]
         public void Reproduce_the_issue()
         {
             var cookies = new HttpCookieCollection();
@@ -25,7 +27,7 @@ namespace AutoMoq.Tests.Scenario
 
             var svc = auto.Create<ContextService>();
             var hascookie = svc.HasCookie("foo");
-            Assert.IsTrue(hascookie);
+            Assert.True(hascookie);
         }
 
         public class ContextService
@@ -48,3 +50,4 @@ namespace AutoMoq.Tests.Scenario
         }
     }
 }
+#endif

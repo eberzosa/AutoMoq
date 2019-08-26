@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Practices.Unity;
-using Moq;
-using NUnit.Framework;
-using Should;
+﻿using Moq;
+using Shouldly;
+using Unity;
+using Xunit;
 
 namespace AutoMoq.Tests
 {
-    [TestFixture]
     public class ConstructorTests
     {
-        [Test]
+        [Fact]
         public void I_can_instantiate_a_working_automoqer_with_no_dependencies()
         {
             var mocker = new AutoMoqer();
@@ -22,7 +16,7 @@ namespace AutoMoq.Tests
             bar.Foo.ShouldBeSameAs(mocker.GetMock<IFoo>().Object);
         }
 
-        [Test]
+        [Fact]
         public void I_can_replace_the_unity_container_with_my_own()
         {
             var container = new UnityContainer();
@@ -36,7 +30,7 @@ namespace AutoMoq.Tests
             bar.Foo.ShouldBeSameAs(foo);
         }
 
-        [Test]
+        [Fact]
         public void I_can_replace_the_unity_container_with_my_own_through_config()
         {
             var container = new UnityContainer();

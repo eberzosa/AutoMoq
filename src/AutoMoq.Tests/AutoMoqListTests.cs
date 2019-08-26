@@ -1,26 +1,20 @@
-using System;
-using AutoMoq.Helpers;
-using Microsoft.Practices.Unity;
-using Moq;
-using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using Should;
+using Shouldly;
+using Xunit;
 
 namespace AutoMoq.Tests
 {
-    [TestFixture]
     public class AutoMoqListTests
     {
         private AutoMoqer mocker;
 
-        [SetUp]
-        public void Setup()
+        public AutoMoqListTests()
         {
             mocker = new AutoMoqer();
         }
 
-        [Test]
+        [Fact]
         public void Can_register_and_resolve_a_list_using_the_declared_type()
         {
             var dependency = new Dependency();
@@ -33,7 +27,7 @@ namespace AutoMoq.Tests
             thing.FindOne().ShouldBeSameAs(dependency);
         }
 
-        [Test]
+        [Fact]
         public void Can_register_and_resolve_a_list_with_an_explicit_type_provided_to_SetInstance()
         {
             var dependency = new Dependency();

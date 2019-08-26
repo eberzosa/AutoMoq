@@ -1,13 +1,12 @@
 using Moq;
-using NUnit.Framework;
-using Should;
+using Shouldly;
+using Xunit;
 
 namespace AutoMoq.Tests
 {
-    [TestFixture]
     public class MockingBehaviorTests
     {
-        [Test]
+        [Fact]
         public void It_should_support_loose_mocking()
         {
             var mocker = new AutoMoqer();
@@ -17,7 +16,7 @@ namespace AutoMoq.Tests
             // is a loose mock
         }
 
-        [Test]
+        [Fact]
         public void It_should_support_strict_mocking()
         {
 
@@ -39,7 +38,7 @@ namespace AutoMoq.Tests
 
         }
 
-        [Test]
+        [Fact]
         public void It_should_allow_a_mock_to_be_changed_on_a_mock_by_mock_basis()
         {
             var mocker = new AutoMoqer();
@@ -64,7 +63,7 @@ namespace AutoMoq.Tests
 
         }
 
-        [Test]
+        [Fact]
         public void It_should_allow_a_mock_to_be_changed_on_a_mock_by_mock_basis_case_2()
         {
             var mocker = new AutoMoqer();
